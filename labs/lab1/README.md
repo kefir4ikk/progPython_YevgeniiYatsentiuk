@@ -8,3 +8,14 @@
 <div align="right">
   <a href="https://github.com/kefir4ikk"><b>GitHub</b></a>
 </div>
+
+```text
+├── .vscode/
+│   └── launch.json                        # Конфігурація відлагоджувача VS Code
+├── docs/                                  # Директорія документації та звітності
+│   └── Лаб. 1 Яцентюк Євгеній КІ 24-1.pdf # Оформлений звіт про виконання роботи (PDF)
+├── exploration_notebook.ipynb             # Інтерактивний блокнот експериментів Jupyter
+├── system_diagnostics.py                  # Скрипт системної діагностики та розбору Варіанта 2
+├── .gitignore                             # Правила виключення тимчасових файлів із Git
+├── environment.yml                        # Специфікація залежностей середовища Conda (ce_lab_env)
+└── README.md                              # Документація проєкту
