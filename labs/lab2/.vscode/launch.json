@@ -1,0 +1,21 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Python: Запуск моделювання скалярних обчислень",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "${workspaceFolder}/scalar_modeling.py",
+            "console": "integratedTerminal",
+            "justMyCode": true
+        },
+        {
+            "name": "Python: Запуск бітових маніпуляцій регістра",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "${workspaceFolder}/register_bitmask.py",
+            "console": "integratedTerminal",
+            "justMyCode": true
+        }
+    ]
+}
