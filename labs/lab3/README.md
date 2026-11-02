@@ -31,13 +31,13 @@ a_0 = x,   a_k = a_{k-1} * (-x^2) / (2k * (2k + 1))
 ```
 lab03/
 ├── .vscode/
-│   └── launch.json          # конфігурація налагоджувача
+│   └── launch.json                           # Конфігурація відлагоджувача VS Code
 ├── docs/                                  
-│   └── Лаб. 4 Яцентюк Євгеній КІ 24-1.pdf   # Оформлений звіт про виконання
-├── .gitignore
-├── branching_logic.py       # f(x) через if-elif-else, тернарний оператор, short-circuit
-├── series_tabulation.py     # табулювання (for) та ряд Тейлора для sin(x) (while)
-└── README.md
+│   └── Лаб. 4 Яцентюк Євгеній КІ 24-1.pdf    # Оформлений звіт про виконання роботи (PDF)
+├── .gitignore                                # Правила виключення тимчасових файлів
+├── branching_logic.py                        # f(x) через if-elif-else, тернарний оператор, short-circuit
+├── series_tabulation.py                      # табулювання (for) та ряд Тейлора для sin(x) (while)
+└── README.md                                 # Короткий звіт з описом параметрів варіанта
 ```
 
 ## Запуск
