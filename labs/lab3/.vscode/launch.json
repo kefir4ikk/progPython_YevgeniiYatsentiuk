@@ -1,0 +1,21 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Python: Запуск модуля розгалужень",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "${workspaceFolder}/branching_logic.py",
+            "console": "integratedTerminal",
+            "justMyCode": true
+        },
+        {
+            "name": "Python: Запуск табулювання та числових рядів",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "${workspaceFolder}/series_tabulation.py",
+            "console": "integratedTerminal",
+            "justMyCode": true
+        }
+    ]
+}
