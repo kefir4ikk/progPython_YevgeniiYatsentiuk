@@ -1,0 +1,21 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Python: Запуск інвентаризації користувачів (dict)",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "${workspaceFolder}/network_inventory.py",
+            "console": "integratedTerminal",
+            "justMyCode": true
+        },
+        {
+            "name": "Python: Запуск аудиту доступу (set/Counter)",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "${workspaceFolder}/security_audit.py",
+            "console": "integratedTerminal",
+            "justMyCode": true
+        }
+    ]
+}
