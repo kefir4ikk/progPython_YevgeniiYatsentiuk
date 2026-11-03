@@ -1,0 +1,23 @@
+# Фрагмент системного журналу Linux Syslog (вибірка з двох хостів)
+Sep  2 08:14:03 srv-web01 sshd[1021]: INFO: Accepted publickey for admin from 192.168.1.15 port 50122 ssh2
+   Sep  2 08:14:21 srv-web01 sshd[1034]: ERR: Failed password for invalid user root from 203.0.113.45 port 41872   
+Sep  2 08:14:23 srv-web01 sshd[1034]: ERR: Failed password for invalid user admin from 203.0.113.45 port 41874
+Sep  2	08:15:02 srv-web01 nginx[2210]: INFO: worker process 2214 started
+Sep  2 08:15:47 srv-web01 nginx[2210]: ERR: connect() failed (111: Connection refused) while connecting to upstream
+Sep  2   08:16:10   srv-db02   postgres[3105]: INFO: database system is ready to accept connections   
+Sep  2 08:17:33 srv-db02 postgres[3118]: ERR: could not write to file "pg_wal/000000010000000000000003": No space left on device
+Sep  2 08:17:34 srv-db02 postgres[3118]: ERR: checkpoint request failed
+Sep  2 08:18:00 srv-web01 cron[877]: INFO: (root) CMD (/usr/local/bin/backup.sh)
+Sep  2 08:19:12 srv-web01 systemd[1]: INFO: Started Daily apt download activities.
+
+Sep  2 08:21:09 srv-db02 sshd[4410]: ERR: maximum authentication attempts exceeded for postgres from 198.51.100.7 port 52114
+Sep  2 08:21:30 srv-web01 nginx[2210]: ERR: open() "/var/www/html/favicon.ico" failed (2: No such file or directory)
+Sep  2 08:22:02 srv-web01 sshd[1021]: INFO: Disconnected from user admin 192.168.1.15 port 50122
+Sep  3 00:00:01 srv-db02 cron[912]: INFO: (postgres) CMD (vacuumdb --all)
+Sep  3 00:03:18 srv-db02 postgres[3200]: INFO: autovacuum launched for database "appdb"
+Sep  3 00:05:44 srv-web01 systemd[1]: ERR: nginx.service: Main process exited, code=exited, status=1/FAILURE
+Sep  3 00:05:45 srv-web01 systemd[1]: INFO: Starting A high performance web server and a reverse proxy server...
+# Нижче навмисно некоректні рядки для перевірки обробки помилок
+Sep  3 09:15:44 srv-web01 kernel: ERR: EXT4-fs error (device sda1): unable to read inode block
+Sep  3 25:61:00 srv-web01 cron[901]: INFO: (root) CMD (/usr/lib/php/sessionclean)
+Sep  3 09:20:10 srv-web01 sshd[1040]: WARN: Connection closed by 10.0.0.9 [preauth]
