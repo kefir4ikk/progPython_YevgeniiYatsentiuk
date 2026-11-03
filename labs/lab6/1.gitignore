@@ -1,0 +1,20 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+.pytest_cache/
+.mypy_cache/
+
+# Віртуальні середовища
+.venv/
+venv/
+env/
+
+# IDE
+.idea/
+.vscode/*
+!.vscode/launch.json
+
+# Системні файли
+.DS_Store
+Thumbs.db
