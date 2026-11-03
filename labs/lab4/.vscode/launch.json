@@ -1,0 +1,21 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Python: Запуск одновимірної обробки векторів",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "${workspaceFolder}/vector_algorithms.py",
+            "console": "integratedTerminal",
+            "justMyCode": true
+        },
+        {
+            "name": "Python: Запуск матричної алгебри",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "${workspaceFolder}/matrix_operations.py",
+            "console": "integratedTerminal",
+            "justMyCode": true
+        }
+    ]
+}
