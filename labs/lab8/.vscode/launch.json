@@ -1,0 +1,26 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Python: empty_dir_cleaner --dry-run (ЛБ8)",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "${workspaceFolder}/cli_main.py",
+            "args": [
+                "--path", "${workspaceFolder}/test_sandbox",
+                "--dry-run"
+            ],
+            "console": "integratedTerminal",
+            "justMyCode": true
+        },
+        {
+            "name": "Python: empty_dir_cleaner --help (ЛБ8)",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "${workspaceFolder}/cli_main.py",
+            "args": ["--help"],
+            "console": "integratedTerminal",
+            "justMyCode": true
+        }
+    ]
+}
