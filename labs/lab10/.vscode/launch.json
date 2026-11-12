@@ -1,0 +1,13 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Python: Запуск файлового конвеєра (ЛБ10)",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "${workspaceFolder}/telemetry_pipeline.py",
+            "console": "integratedTerminal",
+            "justMyCode": true
+        }
+    ]
+}
