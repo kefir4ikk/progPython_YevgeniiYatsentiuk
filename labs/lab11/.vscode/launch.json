@@ -1,0 +1,13 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Python: Запуск об'єктного тестбенчу (ЛБ11)",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "${workspaceFolder}/test_bench.py",
+            "console": "integratedTerminal",
+            "justMyCode": true
+        }
+    ]
+}
