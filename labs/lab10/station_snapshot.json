@@ -1,0 +1,41 @@
+{
+    "station_metadata": {
+        "facility_name": "Data Center Server Cluster DC-1",
+        "snapshot_generated_at": "2026-11-12 14:17:12",
+        "pipeline_version": "1.0.0"
+    },
+    "server_telemetry_summary": {
+        "total_read_rows": 10,
+        "malformed_rows_skipped": 1,
+        "normal_load_rows": 4,
+        "overloaded_rows_saved": 5,
+        "cpu_threshold_percent": 80.0,
+        "average_free_ram_gb": 7.4,
+        "average_cpu_percent": 88.8,
+        "overloaded_servers": [
+            "SRV-02",
+            "SRV-04",
+            "SRV-06",
+            "SRV-08",
+            "SRV-09"
+        ],
+        "max_cpu_server": {
+            "server_id": "SRV-06",
+            "cpu_usage_percent": 97.9
+        },
+        "malformed_details": [
+            "рядок 6 (SRV-05)"
+        ]
+    },
+    "node_firmware_audit": {
+        "magic_signature_hex": "0x4E4F4445",
+        "magic_signature_ascii": "NODE",
+        "firmware_version": "v3.1",
+        "total_image_size_bytes": 14,
+        "header_size_bytes": 6,
+        "payload_size_bytes": 8,
+        "payload_hex": "10 20 30 40 50 60 70 80",
+        "is_signature_valid": true,
+        "payload_seek_consistent": true
+    }
+}
