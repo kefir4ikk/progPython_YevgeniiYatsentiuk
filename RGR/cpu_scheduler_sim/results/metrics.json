@@ -1,0 +1,206 @@
+{
+  "loc": {
+    "cpu_scheduler/__init__.py": {
+      "total": 25,
+      "code": 21
+    },
+    "cpu_scheduler/__main__.py": {
+      "total": 8,
+      "code": 5
+    },
+    "cpu_scheduler/benchmark.py": {
+      "total": 68,
+      "code": 53
+    },
+    "cpu_scheduler/cli.py": {
+      "total": 230,
+      "code": 190
+    },
+    "cpu_scheduler/exceptions.py": {
+      "total": 169,
+      "code": 109
+    },
+    "cpu_scheduler/models.py": {
+      "total": 399,
+      "code": 297
+    },
+    "cpu_scheduler/parser.py": {
+      "total": 89,
+      "code": 66
+    },
+    "cpu_scheduler/reporting.py": {
+      "total": 94,
+      "code": 77
+    },
+    "cpu_scheduler/schedulers.py": {
+      "total": 239,
+      "code": 191
+    },
+    "cpu_scheduler/storage.py": {
+      "total": 99,
+      "code": 81
+    },
+    "tests/__init__.py": {
+      "total": 0,
+      "code": 0
+    },
+    "tests/reference_sim.py": {
+      "total": 76,
+      "code": 65
+    },
+    "tests/test_benchmark.py": {
+      "total": 32,
+      "code": 24
+    },
+    "tests/test_cli.py": {
+      "total": 120,
+      "code": 100
+    },
+    "tests/test_models.py": {
+      "total": 99,
+      "code": 80
+    },
+    "tests/test_parser.py": {
+      "total": 76,
+      "code": 61
+    },
+    "tests/test_schedulers.py": {
+      "total": 200,
+      "code": 162
+    },
+    "tests/test_storage.py": {
+      "total": 73,
+      "code": 59
+    },
+    "cli_main.py": {
+      "total": 14,
+      "code": 11
+    }
+  },
+  "tests": {
+    "test_models": 11,
+    "test_parser": 10,
+    "test_schedulers": 19,
+    "test_storage": 6,
+    "test_cli": 12,
+    "test_benchmark": 3
+  },
+  "tests_total": 61,
+  "coverage": {
+    "cpu_scheduler/__init__.py": 100.0,
+    "cpu_scheduler/__main__.py": 0.0,
+    "cpu_scheduler/benchmark.py": 100.0,
+    "cpu_scheduler/cli.py": 86.2,
+    "cpu_scheduler/exceptions.py": 100.0,
+    "cpu_scheduler/models.py": 93.6,
+    "cpu_scheduler/parser.py": 100.0,
+    "cpu_scheduler/reporting.py": 91.8,
+    "cpu_scheduler/schedulers.py": 98.3,
+    "cpu_scheduler/storage.py": 82.9
+  },
+  "coverage_total": 92.7,
+  "faults": [
+    {
+      "title": "Вхідний файл відсутній",
+      "args": "run --input <tmp>/no_such.txt",
+      "exit_code": 2,
+      "message": "Помилка: [SCHED-ERR-6003] Не вдалося прочитати файл '<tmp>/no_such.txt': [Errno 2] No such file or directory: '<tmp>/no_such.txt'"
+    },
+    {
+      "title": "Вхідний шлях є каталогом",
+      "args": "run --input data",
+      "exit_code": 2,
+      "message": "Помилка: [SCHED-ERR-6003] Шлях 'data' є каталогом, а не файлом навантаження."
+    },
+    {
+      "title": "Нечислова тривалість (burst=zero)",
+      "args": "run --input data/bad_workload.txt",
+      "exit_code": 2,
+      "message": "Помилка: [SCHED-ERR-3001] Рядок 4 має неприпустимий синтаксис: 'P3 arrival=2 burst=zero'."
+    },
+    {
+      "title": "Від’ємний час надходження",
+      "args": "run --input <tmp>/neg.txt",
+      "exit_code": 2,
+      "message": "Помилка: [SCHED-ERR-3001] Рядок 1 має неприпустимий синтаксис: 'P1 arrival=-1 burst=2'."
+    },
+    {
+      "title": "Нульова тривалість процесу",
+      "args": "run --input <tmp>/zero.txt",
+      "exit_code": 2,
+      "message": "Помилка: [SCHED-ERR-3004] Рядок 1: [SCHED-ERR-2002] Тривалість виконання 0 має бути не меншою за 1."
+    },
+    {
+      "title": "Повторний ідентифікатор процесу",
+      "args": "run --input <tmp>/dup.txt",
+      "exit_code": 2,
+      "message": "Помилка: [SCHED-ERR-3002] Ідентифікатор процесу 'P1' уже зареєстровано."
+    },
+    {
+      "title": "Порожній файл навантаження",
+      "args": "run --input <tmp>/empty.txt",
+      "exit_code": 2,
+      "message": "Помилка: [SCHED-ERR-3003] Робоче навантаження порожнє: немає жодного процесу."
+    },
+    {
+      "title": "Файл у неправильному кодуванні",
+      "args": "run --input <tmp>/bin.txt",
+      "exit_code": 2,
+      "message": "Помилка: [SCHED-ERR-6003] Не вдалося прочитати файл '<tmp>/bin.txt': 'utf-8' codec can't decode byte 0xff in position 21: invalid start byte"
+    },
+    {
+      "title": "Квант часу q = 0",
+      "args": "run --input data/workload_basic.txt --quantum 0",
+      "exit_code": 3,
+      "message": "Помилка: [SCHED-ERR-4001] Квант часу = 0 менше допустимого мінімуму 1."
+    },
+    {
+      "title": "Квант часу не є числом",
+      "args": "run --input data/workload_basic.txt --quantum abc",
+      "exit_code": 3,
+      "message": "Помилка: [SCHED-ERR-4000] Параметр --quantum має бути цілим числом, отримано 'abc'."
+    },
+    {
+      "title": "Від’ємна вартість перемикання",
+      "args": "run --input data/workload_basic.txt --switch-cost -1",
+      "exit_code": 3,
+      "message": "Помилка: [SCHED-ERR-4002] Вартість перемикання = -1 менше допустимого мінімуму 0."
+    },
+    {
+      "title": "Невідомий алгоритм",
+      "args": "run --input data/workload_basic.txt --algo sjf",
+      "exit_code": 3,
+      "message": "Помилка: [SCHED-ERR-4003] Невідомий алгоритм 'sjf'; доступні: fifo, rr."
+    },
+    {
+      "title": "Перевищено ліміт інтервалів",
+      "args": "run --input data/workload_basic.txt --quantum 1 --max-slices 5",
+      "exit_code": 4,
+      "message": "Помилка: [SCHED-ERR-5001] Перевищено ліміт 5 інтервалів виконання; збільште квант часу або ліміт."
+    },
+    {
+      "title": "Звіт записується у каталог",
+      "args": "run --input data/workload_basic.txt --json <tmp>",
+      "exit_code": 5,
+      "message": "Помилка: [SCHED-ERR-6001] Не вдалося записати '<tmp>': [Errno 21] Is a directory: '<tmp>'"
+    },
+    {
+      "title": "Невідомий параметр командного рядка",
+      "args": "run --input data/workload_basic.txt --oops",
+      "exit_code": 1,
+      "message": "Помилка: [SCHED-ERR-7001] Невідомий параметр '--oops'."
+    },
+    {
+      "title": "Пропущено значення параметра",
+      "args": "run --input",
+      "exit_code": 1,
+      "message": "Помилка: [SCHED-ERR-7001] Після --input необхідно вказати значення."
+    },
+    {
+      "title": "Невідома команда",
+      "args": "bogus",
+      "exit_code": 1,
+      "message": "Помилка: [SCHED-ERR-7001] Невідома команда 'bogus'; доступні: run, compare, benchmark, generate."
+    }
+  ]
+}

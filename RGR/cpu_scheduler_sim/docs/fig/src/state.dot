@@ -1,0 +1,13 @@
+digraph G { fontname="DejaVu Sans"; node [fontname="DejaVu Sans", fontsize=11]; edge [fontname="DejaVu Sans", fontsize=10]; rankdir=TB; nodesep=1.1; ranksep=0.7;
+  node [shape=ellipse, style=filled, fillcolor="#eef3fb", color="#2a78d6", penwidth=1.4, margin="0.2,0.12"];
+  start [shape=circle, label="", width=0.2, style=filled, fillcolor=black, color=black];
+  NEW [label="NEW\n(створено)"]; READY [label="READY\n(у черзі готових)"];
+  RUNNING [label="RUNNING\n(виконується на CPU)", fillcolor="#fdeee6", color="#eb6834"];
+  DONE [label="TERMINATED\n(завершено)", peripheries=2];
+  start -> NEW;
+  NEW -> READY [label="  надходження: t ≥ a_i"];
+  READY -> RUNNING [label="диспетчеризація:\nголова черги", tailport=e, headport=w];
+  RUNNING -> READY [label="вичерпано квант q\n(лише Round Robin)", tailport=w, headport=e, constraint=false];
+  RUNNING -> DONE [label="  залишок = 0, C_i = t"];
+  {rank=same; READY; RUNNING}
+}

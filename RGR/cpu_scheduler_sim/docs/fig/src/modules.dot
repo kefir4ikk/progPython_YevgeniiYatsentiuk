@@ -1,0 +1,19 @@
+digraph G { fontname="DejaVu Sans"; node [fontname="DejaVu Sans", fontsize=13]; edge [fontname="DejaVu Sans", fontsize=12]; rankdir=TB; nodesep=0.35; ranksep=0.55; compound=true;
+  node [shape=box, style="filled", fillcolor="#ffffff", color="#2a78d6", penwidth=1.3, margin="0.15,0.08"];
+  entry [label="cli_main.py\n(точка входу, __main__)", fillcolor="#eef3fb"];
+  pm [label="cpu_scheduler/__main__.py\n(python -m cpu_scheduler)", fillcolor="#eef3fb"];
+  cli [label="cli.py\nрозбір sys.argv, команди,\nкоди завершення"];
+  subgraph cluster_core { label="Пакет cpu_scheduler (публічний API у __init__.__all__)"; style="rounded,dashed"; color="#888888"; fontsize=12; labelloc=b;
+    parser [label="parser.py\nre: нормалізація\nта валідація рядків"];
+    sched [label="schedulers.py\nBaseScheduler, FIFOScheduler,\nRoundRobinScheduler, _Timeline"];
+    storage [label="storage.py\nJSON / CSV\n(менеджери контексту)"];
+    report [label="reporting.py\nтаблиці, діаграма Ганта"];
+    bench [label="benchmark.py\ngenerate_workload,\nperf_counter"];
+    models [label="models.py\nProcess, Workload, Segment,\nProcessResult, ScheduleResult", fillcolor="#fdeee6", color="#eb6834"];
+    exc [label="exceptions.py\nієрархія SchedulerError", fillcolor="#fdeee6", color="#eb6834"];
+  }
+  entry -> cli; pm -> cli;
+  cli -> parser; cli -> sched; cli -> storage; cli -> report; cli -> bench;
+  parser -> models; sched -> models; storage -> models; report -> models; bench -> sched; bench -> models;
+  models -> exc; parser -> exc; sched -> exc; storage -> exc;
+}

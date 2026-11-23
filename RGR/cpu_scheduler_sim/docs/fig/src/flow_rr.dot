@@ -1,0 +1,24 @@
+digraph G { fontname="DejaVu Sans"; node [fontname="DejaVu Sans", fontsize=11]; edge [fontname="DejaVu Sans", fontsize=10]; rankdir=TB; nodesep=0.45; ranksep=0.3;
+  node [shape=box, style="filled", fillcolor="#ffffff", color="#444444", margin="0.15,0.07"];
+  s [label="Початок: RoundRobinScheduler._dispatch(W, T)", style="rounded,filled", fillcolor="#eef3fb"];
+  i1 [label="pending ← W, відсортований за a_i (стабільно)\nremaining[p] ← b_p;  queue ← ∅;  finished ← 0"];
+  d0 [label="finished < n ?", shape=diamond, fillcolor="#fff7e0"];
+  a1 [label="Допустити до queue всі процеси з a ≤ T.clock"];
+  d1 [label="queue порожня ?", shape=diamond, fillcolor="#fff7e0"];
+  idle [label="T.idle_until(a наступного процесу)\n(інтервал IDLE)"];
+  p1 [label="pid ← queue.popleft();  piece ← min(q, remaining[pid])"];
+  p2 [label="T.run(pid, piece)\n(за потреби: інтервал CS, +σ)"];
+  p3 [label="remaining[pid] ← remaining[pid] − piece\nДопустити до queue процеси з a ≤ T.clock"];
+  d2 [label="remaining[pid] = 0 ?", shape=diamond, fillcolor="#fff7e0"];
+  f1 [label="T.complete(pid);\nfinished ← finished + 1"];
+  f2 [label="queue.append(pid)\n(витіснення)"];
+  e [label="Кінець: усі процеси завершено", style="rounded,filled", fillcolor="#eef3fb"];
+  s -> i1 -> d0;
+  d0 -> a1 [label=" так"]; d0 -> e [label=" ні"];
+  a1 -> d1;
+  d1 -> idle [label=" так"]; d1 -> p1 [label=" ні"];
+  idle -> d0 [constraint=false];
+  p1 -> p2 -> p3 -> d2;
+  d2 -> f1 [label=" так"]; d2 -> f2 [label=" ні"];
+  f1 -> d0 [constraint=false]; f2 -> d0 [constraint=false];
+}

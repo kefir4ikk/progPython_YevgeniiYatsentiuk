@@ -1,0 +1,15 @@
+digraph G { fontname="DejaVu Sans"; node [fontname="DejaVu Sans", fontsize=13]; edge [fontname="DejaVu Sans", fontsize=12]; rankdir=LR; nodesep=0.15; ranksep=0.45;
+  node [shape=box, style="filled", fillcolor="#ffffff", color="#2a78d6", margin="0.12,0.05"];
+  E [label="Exception", fillcolor="#f4f4f1", color="#888888"];
+  S [label="SchedulerError  (1000)", fillcolor="#fdeee6", color="#eb6834"];
+  E -> S;
+  node [fillcolor="#eef3fb"];
+  PP [label="ProcessParameterError  (2000)"]; IA [label="InvalidArrivalError  (2001)"]; IB [label="InvalidBurstError  (2002)"];
+  IF [label="InputFormatError  (3000)"]; LS [label="InvalidLineSyntaxError  (3001)"]; DP [label="DuplicateProcessError  (3002)"]; EW [label="EmptyWorkloadError  (3003)"];
+  SC [label="SchedulerConfigError  (4000)"]; IQ [label="InvalidQuantumError  (4001)"]; IS [label="InvalidSwitchCostError  (4002)"]; UA [label="UnknownAlgorithmError  (4003)"];
+  SE [label="SimulationError  (5000)"]; SL [label="SimulationLimitExceededError  (5001)"];
+  ST [label="StorageError  (6000)"]; RW [label="ReportWriteError  (6001)"]; RR [label="ReportReadError  (6002)"]; WR [label="WorkloadReadError  (6003)"];
+  CU [label="CliUsageError  (7001)"];
+  S -> {PP IF SC SE ST CU};
+  PP -> {IA IB}; IF -> {LS DP EW}; SC -> {IQ IS UA}; SE -> SL; ST -> {RW RR WR};
+}

@@ -1,0 +1,5 @@
+# Приклад робочого навантаження (класичний приклад із підручника Silberschatz et al.)
+# формат: PID arrival=<час надходження> burst=<тривалість>
+P1 arrival=0 burst=24
+P2 arrival=0 burst=3
+P3 arrival=0 burst=3

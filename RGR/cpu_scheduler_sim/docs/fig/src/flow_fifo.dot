@@ -1,0 +1,13 @@
+digraph G { fontname="DejaVu Sans"; node [fontname="DejaVu Sans", fontsize=11]; edge [fontname="DejaVu Sans", fontsize=10]; rankdir=TB; nodesep=0.5; ranksep=0.32;
+  node [shape=box, style=filled, fillcolor="#ffffff", color="#444444", margin="0.18,0.08"];
+  s [label="Початок: FIFOScheduler._dispatch(W, T)", style="rounded,filled", fillcolor="#eef3fb"];
+  i1 [label="order ← W, відсортований за a_i (стабільно)"];
+  d0 [label="Є ще процес p у order ?", shape=diamond, fillcolor="#fff7e0"];
+  d1 [label="a_p > T.clock ?", shape=diamond, fillcolor="#fff7e0"];
+  idle [label="T.idle_until(a_p)\n(інтервал IDLE)"];
+  r [label="T.run(p, b_p)\n(за потреби: інтервал CS, +σ)"];
+  c [label="T.complete(p)"];
+  e [label="Кінець", style="rounded,filled", fillcolor="#eef3fb"];
+  s -> i1 -> d0; d0 -> d1 [label=" так"]; d0 -> e [label=" ні"];
+  d1 -> idle [label=" так"]; d1 -> r [label=" ні"]; idle -> r; r -> c; c -> d0 [constraint=false];
+}

@@ -1,0 +1,50 @@
+digraph G { fontname="DejaVu Sans"; rankdir=TB; nodesep=0.35; ranksep=0.55;
+  node [shape=plain, fontname="DejaVu Sans", fontsize=10]; edge [fontname="DejaVu Sans", fontsize=9];
+  Process [label=<<table border="1" cellborder="0" cellspacing="0" cellpadding="3" bgcolor="#ffffff">
+    <tr><td bgcolor="#eef3fb"><b>Process</b></td></tr><hr/>
+    <tr><td align="left">− __pid: str {readOnly}<br align="left"/>− __arrival_time: int<br align="left"/>− __burst_time: int<br align="left"/></td></tr><hr/>
+    <tr><td align="left">+ pid: str<br align="left"/>+ arrival_time: int {get, set}<br align="left"/>+ burst_time: int {get, set}<br align="left"/>+ __eq__(other) / __lt__(other)<br align="left"/>+ __repr__() / __str__()<br align="left"/></td></tr></table>>];
+  Workload [label=<<table border="1" cellborder="0" cellspacing="0" cellpadding="3" bgcolor="#ffffff">
+    <tr><td bgcolor="#eef3fb"><b>Workload</b></td></tr><hr/>
+    <tr><td align="left">− __processes: list[Process]<br align="left"/>− __index: dict[str, Process]<br align="left"/></td></tr><hr/>
+    <tr><td align="left">+ add(process)<br align="left"/>+ total_burst: int / earliest_arrival: int<br align="left"/>+ __len__() / __iter__() / __contains__()<br align="left"/>+ __getitem__(int | slice | str)<br align="left"/>+ __add__(other: Workload): Workload<br align="left"/></td></tr></table>>];
+  Segment [label=<<table border="1" cellborder="0" cellspacing="0" cellpadding="3" bgcolor="#ffffff">
+    <tr><td bgcolor="#eef3fb"><b>Segment</b> «frozen»</td></tr><hr/>
+    <tr><td align="left">+ kind: str  (RUN | IDLE | CS)<br align="left"/>+ pid: str | None<br align="left"/>+ start: int, end: int<br align="left"/></td></tr><hr/>
+    <tr><td align="left">+ duration: int<br align="left"/></td></tr></table>>];
+  ProcessResult [label=<<table border="1" cellborder="0" cellspacing="0" cellpadding="3" bgcolor="#ffffff">
+    <tr><td bgcolor="#eef3fb"><b>ProcessResult</b> «frozen»</td></tr><hr/>
+    <tr><td align="left">+ pid, arrival, burst: …<br align="left"/>+ first_start, completion: int<br align="left"/></td></tr><hr/>
+    <tr><td align="left">+ turnaround / waiting / response<br align="left"/>+ slowdown: float<br align="left"/></td></tr></table>>];
+  ScheduleResult [label=<<table border="1" cellborder="0" cellspacing="0" cellpadding="3" bgcolor="#ffffff">
+    <tr><td bgcolor="#eef3fb"><b>ScheduleResult</b></td></tr><hr/>
+    <tr><td align="left">− __algorithm: str, __parameters: dict<br align="left"/>− __processes: list[ProcessResult]<br align="left"/>− __segments: list[Segment]<br align="left"/>− __context_switches, __slices: int<br align="left"/></td></tr><hr/>
+    <tr><td align="left">+ avg_waiting / avg_turnaround / avg_response<br align="left"/>+ utilization / throughput / makespan<br align="left"/>+ summary(): dict;  to_dict(): dict<br align="left"/>+ __len__() / __iter__() / __getitem__(int | str)<br align="left"/>+ __lt__(other)  — за середнім очікуванням<br align="left"/></td></tr></table>>];
+  Base [label=<<table border="1" cellborder="0" cellspacing="0" cellpadding="3" bgcolor="#ffffff">
+    <tr><td bgcolor="#fdeee6"><i><b>BaseScheduler</b></i> «abstract»</td></tr><hr/>
+    <tr><td align="left">− __switch_cost: int<br align="left"/>− __max_slices: int<br align="left"/></td></tr><hr/>
+    <tr><td align="left">+ switch_cost: int {get, set}<br align="left"/>+ max_slices: int {get, set}<br align="left"/>+ <i>name: str</i> {abstract}<br align="left"/># <i>_dispatch(workload, timeline)</i> {abstract}<br align="left"/>+ schedule(workload): ScheduleResult<br align="left"/></td></tr></table>>];
+  FIFO [label=<<table border="1" cellborder="0" cellspacing="0" cellpadding="3" bgcolor="#ffffff">
+    <tr><td bgcolor="#eef3fb"><b>FIFOScheduler</b></td></tr><hr/>
+    <tr><td align="left">+ name: str {override}<br align="left"/># _dispatch(workload, timeline) {override}<br align="left"/></td></tr></table>>];
+  RR [label=<<table border="1" cellborder="0" cellspacing="0" cellpadding="3" bgcolor="#ffffff">
+    <tr><td bgcolor="#eef3fb"><b>RoundRobinScheduler</b></td></tr><hr/>
+    <tr><td align="left">− __quantum: int<br align="left"/></td></tr><hr/>
+    <tr><td align="left">+ quantum: int {get, set}<br align="left"/>+ name: str {override}<br align="left"/>+ parameters(): dict {override}<br align="left"/># _dispatch(workload, timeline) {override}<br align="left"/></td></tr></table>>];
+  Timeline [label=<<table border="1" cellborder="0" cellspacing="0" cellpadding="3" bgcolor="#ffffff">
+    <tr><td bgcolor="#f4f4f1"><b>_Timeline</b> «internal»</td></tr><hr/>
+    <tr><td align="left">+ clock: int<br align="left"/>+ segments: list[Segment]<br align="left"/>+ first_start, completion: dict<br align="left"/>− _last_pid: str | None<br align="left"/></td></tr><hr/>
+    <tr><td align="left">+ idle_until(moment)<br align="left"/>+ run(pid, duration)<br align="left"/>+ complete(pid)<br align="left"/></td></tr></table>>];
+  Workload -> Process [arrowhead=none, arrowtail=diamond, dir=both, taillabel="1", headlabel="0..*", labeldistance=1.6];
+  ScheduleResult -> ProcessResult [arrowhead=none, arrowtail=diamond, dir=both, taillabel="1", headlabel="1..*", labeldistance=1.6];
+  ScheduleResult -> Segment [arrowhead=none, arrowtail=diamond, dir=both, taillabel="1", headlabel="1..*", labeldistance=1.6];
+  FIFO -> Base [arrowhead=onormal]; RR -> Base [arrowhead=onormal];
+  Base -> Workload [style=dashed, arrowhead=vee, label=" uses"];
+  Base -> Timeline [style=dashed, arrowhead=vee, label=" drives"];
+  Timeline -> Segment [style=dashed, arrowhead=vee, label=" creates"];
+  Base -> ScheduleResult [style=dashed, arrowhead=vee, label=" creates", constraint=false];
+  {rank=same; FIFO; RR}
+  {rank=same; Base; Workload}
+  {rank=same; Timeline; Process}
+  {rank=same; ProcessResult; Segment}
+}

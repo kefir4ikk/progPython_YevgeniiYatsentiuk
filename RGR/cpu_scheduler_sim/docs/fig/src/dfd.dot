@@ -1,0 +1,21 @@
+digraph G { fontname="DejaVu Sans"; node [fontname="DejaVu Sans", fontsize=14]; edge [fontname="DejaVu Sans", fontsize=12]; rankdir=TB; nodesep=0.35; ranksep=0.5;
+  node [color="#444444"];
+  op [label="Оператор\n(вхід: CLI, sys.argv)", shape=box, style="filled", fillcolor="#eef3fb", penwidth=1.6];
+  op2 [label="Оператор\n(вихід: консоль,\nкод завершення)", shape=box, style="filled", fillcolor="#eef3fb", penwidth=1.6];
+  d1 [label="D1\nФайл навантаження\nworkload.txt", shape=cylinder, style=filled, fillcolor="#f4f4f1"];
+  p1 [label="1\nІмпорт і\nвалідація\n(parser, re)", shape=circle, style=filled, fillcolor="#ffffff", fixedsize=true, width=1.4];
+  p2 [label="2\nСимуляція\nдиспетчера\n(schedulers)", shape=circle, style=filled, fillcolor="#ffffff", fixedsize=true, width=1.5];
+  p3 [label="3\nОбчислення\nпоказників\n(models)", shape=circle, style=filled, fillcolor="#ffffff", fixedsize=true, width=1.45];
+  p4 [label="4\nФормування\nзвітів\n(reporting,\nstorage)", shape=circle, style=filled, fillcolor="#ffffff", fixedsize=true, width=1.5];
+  d2 [label="D2\nJSON-звіт", shape=cylinder, style=filled, fillcolor="#f4f4f1"];
+  d3 [label="D3\nCSV-таблиця", shape=cylinder, style=filled, fillcolor="#f4f4f1"];
+  {rank=same; d1; p1; op}
+  {rank=same; d3; p4; d2}
+  op -> p1 [label="шлях, алгоритм,\nq, σ"];
+  d1 -> p1 [label="текстові\nрядки"];
+  p1 -> p2 [label="Workload"];
+  p2 -> p3 [label="інтервали Ганта,\nмоменти s_i, C_i"];
+  p3 -> p4 [label="ScheduleResult\n(W, T, R, U, CS)"];
+  p4 -> d2 [label="JSON"]; p4 -> d3 [label="CSV"];
+  p4 -> op2 [label="таблиці, діаграма Ганта,\nкод завершення"];
+}
