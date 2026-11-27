@@ -1,0 +1,16 @@
+digraph G {
+  rankdir=LR; bgcolor="white"; nodesep=0.4; ranksep=0.35;
+  node [shape=circle, fontname="Liberation Sans", fontsize=13, fixedsize=true, width=0.5, color="#3B5B92", style=filled, fillcolor="#EEF3FB"];
+  edge [fontname="Liberation Sans", fontsize=12, color="#444444", arrowsize=0.7];
+  start [shape=point, width=0.1, fillcolor=black];
+  q5 [shape=doublecircle, fillcolor="#EAF5EA", color="#3F7D3F"];
+  start -> q0;
+  q0 -> q1 [label="0"];
+  q1 -> q2 [label="x, X"];
+  q2 -> q3 [label="hex"];
+  q3 -> q4 [label="hex"];
+  q4 -> q5 [label="hex"];
+  q5 -> q6 [label="hex"];
+  q6 [shape=doublecircle, fillcolor="#EAF5EA", color="#3F7D3F"];
+  q5 [shape=circle, fillcolor="#EEF3FB", color="#3B5B92"];
+}

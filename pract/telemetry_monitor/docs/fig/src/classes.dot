@@ -1,0 +1,17 @@
+digraph G {
+  rankdir=BT; bgcolor="white"; nodesep=0.3; ranksep=0.55;
+  node [shape=record, fontname="Liberation Sans", fontsize=12, style=filled, fillcolor="#EEF3FB", color="#3B5B92"];
+  edge [arrowhead=empty, color="#444444"];
+  ABC [label="{ABC}", fillcolor="#F2F2F2", color="#888888"];
+  Ser [label="{SerializableMixin|+ as_dict()}", fillcolor="#FFF6DC", color="#B58B1E"];
+  Cal [label="{CalibratedMixin|+ calibrated_value}", fillcolor="#FFF6DC", color="#B58B1E"];
+  Base [label="{BaseSensor «abstract»|- _node_id, _status, _value, _timestamp\l+ value, status  @property + сеттер\l+ quality, flags, critical_flags\l+ is_critical\l|+ check_nominal() «abstract»\l+ diagnose()   шаблонний метод\l+ __str__, __repr__, __eq__, __hash__\l}"];
+  Therm [label="{ThermalSensor|+ thermal_flags}"];
+  Tmp [label="{TemperatureSensor|KIND = TMP, °C\lпоправка −0,5 °C\l|+ check_nominal()\l}"];
+  Fan [label="{FanSensor|KIND = FAN, об/хв\l|+ check_nominal()\l}"];
+  Vlt [label="{VoltageSensor|KIND = VLT, В\l|+ check_nominal()\l}"];
+  Base -> Ser; Base -> ABC;
+  Therm -> Base; Vlt -> Base;
+  Tmp -> Therm; Fan -> Therm;
+  Tmp -> Cal [style=dashed]; Vlt -> Cal [style=dashed];
+}

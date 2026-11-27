@@ -1,0 +1,20 @@
+digraph G {
+  rankdir=RL; bgcolor="white"; nodesep=0.25; ranksep=0.5;
+  node [shape=box, style="rounded,filled", fontname="Liberation Sans", fontsize=12, fillcolor="#EEF3FB", color="#3B5B92"];
+  edge [arrowhead=empty, color="#444444"];
+  T [label="TelemetryError\nE1000", fillcolor="#F2F2F2", color="#666666"];
+  R [label="RecordError\nE2000", fillcolor="#FDEBDD", color="#B5611E"];
+  S [label="StorageError\nE3000", fillcolor="#EAF5EA", color="#3F7D3F"];
+  Th [label="ErrorThresholdExceededError\nE4000", fillcolor="#F2F2F2", color="#666666"];
+  R1 [label="MalformedRecordError\nE2001", fillcolor="#FDEBDD", color="#B5611E"];
+  R2 [label="InvalidStatusError\nE2002", fillcolor="#FDEBDD", color="#B5611E"];
+  R3 [label="ValueOutOfRangeError\nE2003", fillcolor="#FDEBDD", color="#B5611E"];
+  R4 [label="InvalidTimestampError\nE2004", fillcolor="#FDEBDD", color="#B5611E"];
+  R5 [label="UnknownSensorKindError\nE2005", fillcolor="#FDEBDD", color="#B5611E"];
+  S1 [label="LogNotFoundError\nE3001", fillcolor="#EAF5EA", color="#3F7D3F"];
+  S2 [label="LogAccessError\nE3002", fillcolor="#EAF5EA", color="#3F7D3F"];
+  S3 [label="ReportWriteError\nE3003", fillcolor="#EAF5EA", color="#3F7D3F"];
+  R -> T; S -> T; Th -> T;
+  R1 -> R; R2 -> R; R3 -> R; R4 -> R; R5 -> R;
+  S1 -> S; S2 -> S; S3 -> S;
+}

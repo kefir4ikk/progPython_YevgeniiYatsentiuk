@@ -1,0 +1,19 @@
+digraph G {
+  rankdir=TB; bgcolor="white"; nodesep=0.3; ranksep=0.55;
+  node [shape=box, style="rounded,filled", fontname="Liberation Sans", fontsize=13, fillcolor="#EEF3FB", color="#3B5B92", penwidth=1.2];
+  edge [color="#555555", arrowsize=0.7, fontname="Liberation Sans", fontsize=10];
+  cli [label="cli.py\nprocess_log, main", fillcolor="#FDEBDD", color="#B5611E"];
+  main [label="__main__.py\nточка входу", fillcolor="#FDEBDD", color="#B5611E"];
+  storage [label="storage.py\nLogReader, AtomicWriter"];
+  parser [label="parser.py\nRECORD_PATTERN, parse_stream"];
+  sensors [label="sensors.py\nBaseSensor і нащадки"];
+  flags [label="flags.py\nStatusFlags, побітові функції"];
+  analytics [label="analytics.py\nfilter_records, aggregate"];
+  report [label="report.py\niter_report_lines"];
+  exceptions [label="exceptions.py\nTelemetryError та нащадки", fillcolor="#EAF5EA", color="#3F7D3F"];
+  main -> cli;
+  cli -> storage; cli -> parser; cli -> analytics; cli -> report;
+  parser -> sensors; analytics -> sensors; report -> analytics; report -> parser; report -> flags;
+  sensors -> flags;
+  storage -> exceptions [style=dashed]; parser -> exceptions [style=dashed]; sensors -> exceptions [style=dashed];
+}
